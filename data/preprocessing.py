@@ -1,12 +1,9 @@
-# %%
-import numpy as np
-import pandas as pd
-
-
-# %%
 def date_to_numeric(row):
-    excel_months = ["dummy", "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
-    numerical_months = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+
+    excel_months = ["dummy", "Jan", "Feb", "Mär", "Apr",
+                    "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+    numerical_months = ["00", "01", "02", "03", "04",
+                        "05", "06", "07", "08", "09", "10", "11", "12"]
 
     input_values = row.split()
     if len(input_values) == 2:
@@ -15,3 +12,9 @@ def date_to_numeric(row):
         return input_values[0] + "." + translated_month
     else:
         return row
+
+
+def reorder_date(row_date_as_string):
+
+    year, day, month = row_date_as_string.split("-")
+    return year + "-" + month + "-" + day
