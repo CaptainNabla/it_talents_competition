@@ -12,9 +12,3 @@ def date_to_numeric(row):
         return input_values[0] + "." + translated_month
     else:
         return row
-
-
-def reorder_date(row_date_as_string):
-
-    year, day, month = row_date_as_string.split("-")
-    return year + "-" + month + "-" + day
