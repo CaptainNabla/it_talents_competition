@@ -10,7 +10,8 @@ sns.set_style("whitegrid")
 # %%
 data = pd.read_csv("bin/data/races.csv", sep=";")
 # data[["race_created", "race_driven"]] = data[["race_created", "race_driven"]].astype("datetime64")
-data[["race_created"]] = data[["race_created"]].astype("datetime64")
+data["race_created"] = pd.to_datetime(data["race_created"], dayfirst=True)
+# data["race_created"] = data["race_created"].astype("datetime64")
 
 
 # %%
