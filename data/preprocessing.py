@@ -14,11 +14,6 @@ data["race_created"] = pd.to_datetime(data["race_created"], dayfirst=True)
 
 
 
-
-
-
-
-
 # %%
 # Investigate Ids of opponents and challengers
 data.loc[data.opponent==data.challenger]
