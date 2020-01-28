@@ -1,47 +1,20 @@
-# %%
-import numpy as np
-import pandas as pd
-import itertools
+def date_to_numeric(row):
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set_style("whitegrid")
+    excel_months = ["dummy", "Jan", "Feb", "Mrz", "Apr",
+                    "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+    numerical_months = ["00", "01", "02", "03", "04",
+                        "05", "06", "07", "08", "09", "10", "11", "12"]
 
-
-# %%
-data = pd.read_csv("bin/data/races.csv", sep=";")
-data["race_created"] = pd.to_datetime(data["race_created"], dayfirst=True)
-
-
-
-# %%
-# Investigate Ids of opponents and challengers
-data.loc[data.opponent==data.challenger]
-# apparently challenger and opponents are disjunct sets (cant play against yourself)
-
-
-# %%
-# We would expect continous numbers, but obviously some duds in there
-# TODO: MAKE PLOT NICE
-opponents = data.opponent.unique()
-opponents.sort()
-challengers = data.challenger.unique()
-challengers.sort()
-
-fig, axes = plt.subplots(1,2, figsize=(10, 10))
-
-axes[0].plot(range(len(opponents)), opponents)
-axes[1].plot(range(len(challengers)), challengers)
-
-plt.show()
-
-
-# %%
-# investigate strange large opponents ids
-print(data.loc[data.opponent.isin(opponents[-3:])].status.unique())
-# apperently all not played anyway so we go ahead and drop the respective columns
-
-
-# %%
-# remove duds
-data_cleaned = data.drop(data[data.opponent.isin(opponents[-3:])].index) 
+    input_values = row.split(".")
+    if len(input_values) == 2 and not input_values[1].isdigit():
+        index = excel_months.index(input_values[1].strip())
+        translated_month = numerical_months[index]
+        return input_values[0] + "." + translated_month
+    else:
+        input_values = row.split()
+        if len(input_values) == 2:
+            index = excel_months.index(input_values[0])
+            translated_month = numerical_months[index]
+            return input_values[1] + "." + translated_month
+        else:
+            return row
