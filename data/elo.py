@@ -14,13 +14,13 @@ data[["race_created", "race_driven"]] = \
 
 # %%
 # Extract player id
-player_ids = list(pd.unique(data[["challenger", "opponent"]].values.ravel('K')))
+player_ids = list(pd.unique(data[["challenger", "opponent"]].values.ravel("K")))
 player_ids.sort()
 
 
 # %%
 # Create Elo time series
-elo_start = 1500  # which value??????????
+elo_start = 1500  # TODO: which value??????????
 elo_df = pd.DataFrame(columns=["date"]+["player_" + str(player_id) for player_id in player_ids])
 
 # 1 additional day for initialization
@@ -28,14 +28,15 @@ elo_df["date"] = pd.date_range(start=data["race_created"].min()-pd.to_timedelta(
                                end=data["race_created"].max(), freq="D")
 elo_df.loc[0, 1:] = elo_start
 
-dates_without_games = [pd.to_datetime(date) 
-                       for date in elo_df["date"].values 
-                       if date not in data["race_created"].unique()]
+data.dropna(inplace=True)
+dates_without_games = [pd.to_datetime(date)
+                       for date in elo_df["date"].values
+                       if date not in data["race_created"].values]
 
 
 # %%
 start = time.time()
-
+# TODO: as method
 df_grouped = data.dropna().groupby("race_created")
 for current_index, _ in tqdm(elo_df.loc[1:].iterrows()):
     date = elo_df.loc[current_index, "date"]
@@ -55,5 +56,10 @@ for current_index, _ in tqdm(elo_df.loc[1:].iterrows()):
 
 end = time.time()
 print(f"Total time was {end-start} seconds.")
+
+
+# %%
+elo_df.to_csv("data/processed_data/elo.csv", header=True, index=False)
+
 
 # %%
