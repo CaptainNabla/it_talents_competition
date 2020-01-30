@@ -1,4 +1,5 @@
 # %%
+# TODO: nicer variable names
 import pandas as pd
 import time
 from tqdm import tqdm
