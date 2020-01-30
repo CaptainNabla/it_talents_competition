@@ -2,7 +2,6 @@
 import numpy as np
 import pandas as pd
 import datetime
-# from datetime.datetime import strptime
 
 from data.preprocessing import date_to_numeric
 
