@@ -5,9 +5,8 @@ import datetime
 
 from data.preprocessing import date_to_numeric
 
-
 # %%
-data = pd.read_csv("data/raw_data/races.csv", sep=";")
+data = pd.read_csv("data/races.csv", sep=";")
 
 
 # %%
