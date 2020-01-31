@@ -1,1 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="0" name="pytest" skips="0" tests="0" time="0.027"></testsuite>
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="1" failures="0" name="pytest" skips="0" tests="1" time="0.137"><testcase classname="" file="tests/test_preprocessing.py" name="tests.test_preprocessing" time="0"><error message="collection failure">ImportError while importing test module &apos;c:\Users\LaksanNathan\Documents\it_comp\it_talents_competition\tests\test_preprocessing.py&apos;.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+tests\test_preprocessing.py:3: in &lt;module&gt;
+    from data.preprocessing import date_to_numeric
+E   ModuleNotFoundError: No module named &apos;data.preprocessing&apos;</error></testcase></testsuite>
