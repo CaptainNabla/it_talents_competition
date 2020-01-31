@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# It_talents_competition
-
-=======
 # it_talents_competition
 
 ## Requirements
@@ -25,4 +21,3 @@
 3. data/elo.py
 4. visualization/eda_advanced.ipynb
 5. model/xgb.ipynb
->>>>>>> 522da308fadf40aa8957e5b64f297c4058a8dc4b
