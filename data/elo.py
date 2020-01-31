@@ -54,13 +54,24 @@ for current_index, _ in tqdm(elo_df.loc[1:].iterrows()):
                                                                winner=winner)
             elo_df.iloc[current_index, player_ids.index(challenger_id)] = challenger_elo_new
             elo_df.iloc[current_index, player_ids.index(opponent_id)] = opponent_elo_new
-
+elo_df = elo_df.iloc[:-1]
 end = time.time()
 print(f"Total time was {end-start} seconds.")
 
 
 # %%
-elo_df.to_csv("data/processed_data/elo.csv", header=True, index=False)
+# Save frame
+# elo_df.to_csv("data/processed_data/elo.csv", header=True, index=False)  # too large for github
+elo_df.loc[:970].to_csv("data/processed_data/elo_part1.csv", header=True, index=False)
+elo_df[970:1400].to_csv("data/processed_data/elo_part2.csv", header=True, index=False)
+elo_df[1400:].to_csv("data/processed_data/elo_part3.csv", header=True, index=False)
 
+
+# %%
+# Save subset with top 5 players
+last_row = elo_df.iloc[-1]
+top5_columns = last_row.values[1:].argsort()[-5:][::-1]
+top5_elo_df = elo_df.iloc[:, top5_columns]
+top5_elo_df.to_csv("data/processed_data/top5_elo.csv", header=True, index=False)
 
 # %%
