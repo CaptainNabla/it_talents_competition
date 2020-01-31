@@ -69,3 +69,23 @@ def date_to_numeric(row):
             return input_values[1] + "." + translated_month
         else:
             return row
+
+
+def categorize_time_of_day(hour):
+
+    online_times = {"morning": list(range(6, 13)),
+                    "afternoon": list(range(12, 18)),
+                    "evening": list(range(17, 22)),
+                    "early_night": list(range(21, 24)) + [0, 1],
+                    "night": list(range(1, 7))}
+
+    if hour in online_times["morning"]:
+        return "morning"
+    elif hour in online_times["afternoon"]:
+        return "afternoon"
+    elif hour in online_times["evening"]:
+        return "evening"
+    elif hour in online_times["early_night"]:
+        return "early_night"
+    elif hour in online_times["night"]:
+        return "night"
