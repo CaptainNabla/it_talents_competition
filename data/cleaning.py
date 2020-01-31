@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import datetime
 
-from data.preprocessing import date_to_numeric
+from data.transformation import date_to_numeric
 
 # %%
 data = pd.read_csv("data/races.csv", sep=";")
